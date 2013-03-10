@@ -1,114 +1,94 @@
 <!DOCTYPE html>
+<title>A Closer Look at NC Amendment One</title>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>A Closer Look at NC Amendment One</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <!-- Le styles -->
-    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
-    <link href="lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+<style>
+  @import url(http://fonts.googleapis.com/css?family=Istok+Web);
+  @import url(http://fonts.googleapis.com/css?family=Oswald);
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+  h1, h2 {
+    text-rendering: optimizeLegibility;
+  }
 
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="lib/ico/codementum.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="lib/bootstrap/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="lib/bootstrap/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="lib/bootstrap/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="lib/bootstrap/ico/apple-touch-icon-57-precomposed.png">
+  h1, h2, footer, #visTitle {
+    font-family: "Oswald", serif;
+    color: #000;
+  }
+
+  svg {
+    font-size: 13px;
+  }
+
+  #focusData {
+    font-size: 14px;
+  }
+
+  body {
+    color: #333;
+    margin: 1em auto 4em auto;
+    width: 960px;
+    font-family: "Istok Web", sans-serif;
+    background-image:url(lib/debut_light.png); 
+    background-repeat:repeat;
+  }
+
+  body > p, h1 {
+    width: 720px;
+  }
+</style>
+
+<script src="http://d3js.org/d3.v3.js"></script>
+<script src="http://code.jquery.com/jquery-1.7.2.js"></script>
+
+<!-- google analytics -->
+<script src="data/amendmentOne.js"></script>
+<script src="data/universities.js"></script>
+<script src="data/descriptions.js"></script>
+<script src="data/census2010.js"></script>
+<script src="data/americanCommunitySurvey2005-2009.js"></script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-31824206-1']);
+_gaq.push(['_setDomainName', 'codementum.org']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+ })();
+
+</script>
+
+<h1>A Closer Look at NC Amendment One</h1>
+
+<p>North Carolina state constitution Amendment One appeared on the May 8, 2012 state ballot, and was passed by popular vote (61.05% for, 38.95% against). The amendment defines marriage in the state constitution as between one man and one woman and bars the state from recognizing any domestic partnerships or civil unions (same sex or otherwise). Same sex marriage was already illegal in North Carolina, however the amendment adds the ban to the state constitution.</p>
+
+<p>We felt that many of the current maps circulating only told part of the story behind Amendment One. The second map (Swing Direction on Amendment One) is the one you've likely seen on the news. It is also the one being used by both sides in heated "us against them"-style arguments. The first map (Percentage For Amendment One (Diverging)) uses the same data, but with a complete color scale that shows just how close and far individual counties were. </p>
+
+<p>We also include other maps in the dropdown boxes. You can select different maps and hover over counties to compare different variables. Note that most variables are weighted by the total population of a county, such as Percentage Separated or Divorced and Percentage with Bachelor or Graduate Degrees.</p>
+
+<p>You can find the code on <a href="http://github.com/codementum/admendmentone">GitHub</a> and follow Lane (<a href="http://twitter.com/laneharrison">@laneharrison</a>) and Drew (<a href="http://twitter.com/SeeingStructure">@SeeingStructure</a>) on Twitter.</p>
 
 
-    <!-- Necessary js -->
-    <script src="lib/d3.v2.js"></script>
-    <script src="lib/jquery-1.7.2.min.js"></script>
-    <script src="data/amendmentOne.js"></script>
-    <script src="data/universities.js"></script>
-    <script src="data/descriptions.js"></script>
-    <script src="data/census2010.js"></script>
-    <script src="data/americanCommunitySurvey2005-2009.js"></script>
+  <select id="leftMapControl" style="width:320px">
+    <option>Swing Direction on Amendment One</option>
+    <option>Percentage For Amendment One (Diverging)</option>
+    <option>Percentage For Amendment One</option>
+    <option>Female-Male Skew</option>
+    <option>Percentage Married</option>
+    <option>Percentage Separated or Divorced</option>
+    <option>Percentage with Bachelor or Graduate Degrees</option>
+    <option>Total Universities</option>
+    <option>Population per square mile</option>
+    <option>Veteran Population Percentage</option>
+    <option>Median Income</option>
+  </select>
 
-    <!-- Google Analytics -->
-    <script type="text/javascript">
-
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-31824206-1']);
-        _gaq.push(['_setDomainName', 'codementum.org']);
-        _gaq.push(['_trackPageview']);
-
-        (function() {
-         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-         })();
-
-     </script>
-  </head>
-
-  <body>
-
-      <!--
-      -->
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">codementum</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-                <!--<li class="active"><a href="#">Home</a></li>-->
-                <li><a href="../about.html">About</a></li>
-                <li><a href="/amendmentone/">Amendment One</a></li>
-              <!--<li><a href="#contact">Contact</a></li>-->
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-    <div class="row">
-        <div class="span7">
-          <h1>A Closer Look at NC Amendment One</h1>
-          <p>North Carolina state constitution Amendment One appeared on the May 8, 2012 state ballot, and was passed by popular vote (61.05% for, 38.95% against). The amendment defines marriage in the state constitution as between one man and one woman and bars the state from recognizing any domestic partnerships or civil unions (same sex or otherwise). Same sex marriage was already illegal in North Carolina, however the amendment adds the ban to the state constitution.</p>
-          <p>We felt that many of the current maps circulating only told part of the story behind Amendment One. The second map (Swing Direction on Amendment One) is the one you've likely seen on the news. It is also the one being used by both sides in heated "us against them"-style arguments. The first map (Percentage For Amendment One (Diverging)) uses the same data, but with a complete color scale that shows just how close and far individual counties were. </p>
-          <p>We also include other maps in the dropdown boxes. You can select different maps and hover over counties to compare different variables. Note that most variables are weighted by the total population of a county, such as Percentage Separated or Divorced and Percentage with Bachelor or Graduate Degrees.</p>
-        </div> 
-    </div>
-
-<div class="row">
-        <div class="span5">
-            <span>
-          <select id="leftMapControl" style="width:320px">
-              <option>Swing Direction on Amendment One</option>
-              <option>Percentage For Amendment One (Diverging)</option>
-              <option>Percentage For Amendment One</option>
-              <option>Female-Male Skew</option>
-              <option>Percentage Married</option>
-              <option>Percentage Separated or Divorced</option>
-              <option>Percentage with Bachelor or Graduate Degrees</option>
-              <option>Total Universities</option>
-              <option>Population per square mile</option>
-              <option>Veteran Population Percentage</option>
-              <option>Median Income</option>
-          </select>
-          </span>
-              <span id="topMap">
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" id="topMap" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="500px" height="189.541px" viewBox="230 87.188 500 189.541" enable-background="new 230 87.188 500 189.541"
 	 xml:space="preserve">
 <g id="Top">
@@ -5572,16 +5552,12 @@
 
         <br />
         
-          <span id="leftDescription" class="span5" style="margin-left:-.05px">                
+          <span id="leftDescription">                
             This map shows the percentage of people that voted for Amendment One. Counties with a blue hue are counties where less than 50% of the voting population voted for Amendment One. The data is from the <a href='http://results.enr.clarityelections.com/NC/36596/81350/en/reports.html' target='_blank'>state board of elections</a>.
         </span>
 
-    </span>
-</div>
 </svg>
 
-<div class="span5 offset1">
-    <span>
         <select id="rightMapControl" style="width:320px">
             <option>Swing Direction on Amendment One</option>
             <option>Percentage For Amendment One (Diverging)</option>
@@ -5595,10 +5571,8 @@
             <option>Veteran Population Percentage</option>
             <option>Median Income</option>
         </select>
-        </span>
 
-        <span id="bottomMap">
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" id="bottomMap" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="500px" height="189.541px" viewBox="230 87.188 500 189.541" enable-background="new 230 87.188 500 189.541"
 	 xml:space="preserve">
 <g id="Top">
@@ -11061,20 +11035,15 @@
 </g>
 
 </svg>
-</span>
         <br /> 
 
         <span id="rightDescription" class="span5" style="margin-left:-.05px">                
             This map shows the percentage of people that voted for Amendment One. Counties with a blue hue are counties where less than 50% of the voting population voted for Amendment One. The data is from the <a href='http://results.enr.clarityelections.com/NC/36596/81350/en/reports.html' target='_blank'>state board of elections</a>.
         </span>
-</div> <!-- /maps -->
-</div> <!-- /row -->
 
 
     <!-- Data Table -->
-    <div class="row">
-        <div id="focusData" class="span6">                
-            <table class="table table-condensed">
+            <table id="focusData" class="table table-condensed">
                 <thead>
                 <tr>
                     <th>County&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
@@ -11107,336 +11076,298 @@
 
                 </tr>
             </table>
-        </div> 
-    </div> 
 
 
-    <div class="row">
-        <div class="span8">
-          <p>You can find the code on <a href="http://github.com/codementum/admendmentone">GitHub</a> and follow Lane (<a href="http://twitter.com/laneharrison">@laneharrison</a>) and Drew (<a href="http://twitter.com/SeeingStructure">@SeeingStructure</a>) on Twitter.</p>
-        </div> 
-    </div> 
 
-</div> <!-- /container -->
+<script>
 
+// TODO test these in updateScale
+var leftSelection = function(){
+     var str = "";
+     $("#leftMapControl option:selected").each(function () {
+             str += $(this).text() + " ";
+             });
 
-    <!-- codehere -->
-   <script type="text/javascript">
+     return str;
+ }
 
-       // TODO test these in updateScale
-       var leftSelection = function(){
-           var str = "";
-           $("#leftMapControl option:selected").each(function () {
-                   str += $(this).text() + " ";
-                   });
+var rightSelection = function(){
+     var str = "";
+     $("#rightMapControl option:selected").each(function () {
+             str += $(this).text() + " ";
+             });
 
-           return str;
-       }
+     return str;
+}
 
-      var rightSelection = function(){
-           var str = "";
-           $("#rightMapControl option:selected").each(function () {
-                   str += $(this).text() + " ";
-                   });
+// jquery dropdown testing
+$("#leftMapControl").change(function () {
+      // get current selection
+      var str = "";
+      $("#leftMapControl option:selected").each(function () {
+            str += $(this).text() + " ";
+      });
 
-           return str;
-       }
+      // call appropriate function
+      if(str.indexOf('Swing Direction on Amendment One') != -1){
+        forAgainstFillMap(d3.select('#topMap'));
+      } else if (str.indexOf('Diverging') != -1){
+        forAgainstPercentageMap(d3.select('#topMap'));
+      } else if (str.indexOf('Percentage For Amendment One') != -1){
+        forAgainstPercentageMapLinear(d3.select('#topMap'));
+      } else if (str.indexOf('Female-Male Skew') != -1){
+        femaleMaleMap(d3.select('#topMap'));
+      } else if (str.indexOf('Population per square mile') != -1){
+        populationDensityMap(d3.select('#topMap'));
+      } else if (str.indexOf('Percentage with Bachelor or Graduate Degrees') != -1){
+        bachelorsDegreeMap(d3.select('#topMap'));
+      } else if (str.indexOf('Percentage Separated or Divorced') != -1){
+        discordMap(d3.select('#topMap'));
+      } else if (str.indexOf('Veteran Population Percentage') != -1){
+        veteranMap(d3.select('#topMap'));
+      } else if (str.indexOf('Median Income') != -1){
+        medianIncomeMap(d3.select('#topMap'));
+      } else if (str.indexOf('Total Universities') != -1){
+        hasUniversityMap(d3.select('#topMap'));
+      } else if (str.indexOf('Married') != -1){
+        marriageMap(d3.select('#topMap'));
+      }
 
-    // jquery dropdown testing
-    $("#leftMapControl").change(function () {
-          // get current selection
-          var str = "";
-          $("#leftMapControl option:selected").each(function () {
-                str += $(this).text() + " ";
-          });
+      //update map desc
+      updateMapDescription(d3.select('#topMap'));
 
-          // call appropriate function
-          if(str.indexOf('Swing Direction on Amendment One') != -1){
-            forAgainstFillMap(d3.select('#topMap'));
-          } else if (str.indexOf('Diverging') != -1){
-            forAgainstPercentageMap(d3.select('#topMap'));
-          } else if (str.indexOf('Percentage For Amendment One') != -1){
-            forAgainstPercentageMapLinear(d3.select('#topMap'));
-          } else if (str.indexOf('Female-Male Skew') != -1){
-            femaleMaleMap(d3.select('#topMap'));
-          } else if (str.indexOf('Population per square mile') != -1){
-            populationDensityMap(d3.select('#topMap'));
-          } else if (str.indexOf('Percentage with Bachelor or Graduate Degrees') != -1){
-            bachelorsDegreeMap(d3.select('#topMap'));
-          } else if (str.indexOf('Percentage Separated or Divorced') != -1){
-            discordMap(d3.select('#topMap'));
-          } else if (str.indexOf('Veteran Population Percentage') != -1){
-            veteranMap(d3.select('#topMap'));
-          } else if (str.indexOf('Median Income') != -1){
-            medianIncomeMap(d3.select('#topMap'));
-          } else if (str.indexOf('Total Universities') != -1){
-            hasUniversityMap(d3.select('#topMap'));
-          } else if (str.indexOf('Married') != -1){
-            marriageMap(d3.select('#topMap'));
-          }
-
-          //update map desc
-          updateMapDescription(d3.select('#topMap'));
-
-    })
+})
 
 
-    $("#rightMapControl").change(function () {
-          // get current selection
-          var str = "";
-          $("#rightMapControl option:selected").each(function () {
-                str += $(this).text() + " ";
-          });
+$("#rightMapControl").change(function () {
+      // get current selection
+      var str = "";
+      $("#rightMapControl option:selected").each(function () {
+            str += $(this).text() + " ";
+      });
 
-          // call appropriate function
-          if(str.indexOf('Swing Direction on Amendment One') != -1){
-            forAgainstFillMap(d3.select('#bottomMap'));
-          } else if (str.indexOf('Diverging') != -1){
-            forAgainstPercentageMap(d3.select('#bottomMap'));
-          } else if (str.indexOf('Percentage For Amendment One') != -1){
-            forAgainstPercentageMapLinear(d3.select('#bottomMap'));
-          } else if (str.indexOf('Female-Male Skew') != -1){
-            femaleMaleMap(d3.select('#bottomMap'));
-          } else if (str.indexOf('Population per square mile') != -1){
-            populationDensityMap(d3.select('#bottomMap'));
-          } else if (str.indexOf('Percentage with Bachelor or Graduate Degrees') != -1){
-            bachelorsDegreeMap(d3.select('#bottomMap'));
-          } else if (str.indexOf('Percentage Separated or Divorced') != -1){
-            discordMap(d3.select('#bottomMap'));
-          } else if (str.indexOf('Veteran Population Percentage') != -1){
-            veteranMap(d3.select('#bottomMap'));
-          } else if (str.indexOf('Median Income') != -1){
-            medianIncomeMap(d3.select('#bottomMap'));
-          } else if (str.indexOf('Total Universities') != -1){
-            hasUniversityMap(d3.select('#bottomMap'));
-          } else if (str.indexOf('Married') != -1){
-            marriageMap(d3.select('#bottomMap'));
-          }
+      // call appropriate function
+      if(str.indexOf('Swing Direction on Amendment One') != -1){
+        forAgainstFillMap(d3.select('#bottomMap'));
+      } else if (str.indexOf('Diverging') != -1){
+        forAgainstPercentageMap(d3.select('#bottomMap'));
+      } else if (str.indexOf('Percentage For Amendment One') != -1){
+        forAgainstPercentageMapLinear(d3.select('#bottomMap'));
+      } else if (str.indexOf('Female-Male Skew') != -1){
+        femaleMaleMap(d3.select('#bottomMap'));
+      } else if (str.indexOf('Population per square mile') != -1){
+        populationDensityMap(d3.select('#bottomMap'));
+      } else if (str.indexOf('Percentage with Bachelor or Graduate Degrees') != -1){
+        bachelorsDegreeMap(d3.select('#bottomMap'));
+      } else if (str.indexOf('Percentage Separated or Divorced') != -1){
+        discordMap(d3.select('#bottomMap'));
+      } else if (str.indexOf('Veteran Population Percentage') != -1){
+        veteranMap(d3.select('#bottomMap'));
+      } else if (str.indexOf('Median Income') != -1){
+        medianIncomeMap(d3.select('#bottomMap'));
+      } else if (str.indexOf('Total Universities') != -1){
+        hasUniversityMap(d3.select('#bottomMap'));
+      } else if (str.indexOf('Married') != -1){
+        marriageMap(d3.select('#bottomMap'));
+      }
 
-          //update map desc
-          updateMapDescription(d3.select('#bottomMap'));
+      //update map desc
+      updateMapDescription(d3.select('#bottomMap'));
 
-    })
+})
 
-    function updateMapDescription(map){
-        var maptype = "";
-        if(map.attr('id') === 'topMap'){
-            maptype = leftSelection();
-            //find description text
-            var str = "";
-            $.each(descriptions, function(key, data){
-                    if(maptype.indexOf(data.mapName) != -1 ){ 
-                        str = data.description;
-                    } 
-            });
-            d3.select('#leftDescription')
-                .html(str);
-        } else {
-            maptype = rightSelection();
-            //find description text
-            var str = "";
-            $.each(descriptions, function(key, data){
-                    if(maptype.indexOf(data.mapName) != -1 ){ 
-                        str = data.description;
-                    } 
-            });
-            d3.select('#rightDescription')
-                .html(str);
-        }
+function updateMapDescription(map){
+    var maptype = "";
+    if(map.attr('id') === 'topMap'){
+        maptype = leftSelection();
+        //find description text
+        var str = "";
+        $.each(descriptions, function(key, data){
+                if(maptype.indexOf(data.mapName) != -1 ){ 
+                    str = data.description;
+                } 
+        });
+        d3.select('#leftDescription')
+            .html(str);
+    } else {
+        maptype = rightSelection();
+        //find description text
+        var str = "";
+        $.each(descriptions, function(key, data){
+                if(maptype.indexOf(data.mapName) != -1 ){ 
+                    str = data.description;
+                } 
+        });
+        d3.select('#rightDescription')
+            .html(str);
     }
+}
 
-    // set body to pretty color
-    //d3.select("body").style("background-color", "#D0D0D0");
-    //d3.select("body").style("background-color", "#f2f2f2");
+// set body to pretty color
+//d3.select("body").style("background-color", "#D0D0D0");
+//d3.select("body").style("background-color", "#f2f2f2");
 
-    // select both top and bottom map
-    var topCounties = d3.select('#topMap').selectAll('path');
-    var bottomCounties = d3.select('#bottomMap').selectAll('path');
+// select both top and bottom map
+var topCounties = d3.select('#topMap').selectAll('path');
+var bottomCounties = d3.select('#bottomMap').selectAll('path');
 
-    // set stroke to none
-    topCounties.style("stroke", function(d){
-                if(this.id.indexOf('fill') != -1){
-                    return '#d0d0d0';
-                } else {
-                    return 'none';
-                }
-            });
-    bottomCounties.style("stroke", function(d){
-                if(this.id.indexOf('fill') != -1){
-                    return '#d0d0d0';
-                } else {
-                    return 'none';
-                }
-            });
-
-
-    // append titles to topCounties
-    topCounties.append('title')
-        .text(function(d) {
-            var str = this.parentNode.id;
-            str = str.replace('_stroke', '');
-            str = str.replace('_fill', '');
-            return str;
+// set stroke to none
+topCounties.style("stroke", function(d){
+            if(this.id.indexOf('fill') != -1){
+                return '#d0d0d0';
+            } else {
+                return 'none';
+            }
+        });
+bottomCounties.style("stroke", function(d){
+            if(this.id.indexOf('fill') != -1){
+                return '#d0d0d0';
+            } else {
+                return 'none';
+            }
         });
 
-    // also set values here
-    $("#leftMapControl").val("Percentage For Amendment One (Diverging)");
-    $("#rightMapControl").val("Swing Direction on Amendment One");
 
-    // function calls to set maps initially
-        // (these will be used in the dropdown)
-    forAgainstPercentageMap(d3.select('#topMap'));
-    forAgainstFillMap(d3.select('#bottomMap'));
+// append titles to topCounties
+topCounties.append('title')
+    .text(function(d) {
+        var str = this.parentNode.id;
+        str = str.replace('_stroke', '');
+        str = str.replace('_fill', '');
+        return str;
+    });
 
-    updateMapDescription(d3.select('#topMap'));
-    updateMapDescription(d3.select('#bottomMap'));
+// also set values here
+$("#leftMapControl").val("Percentage For Amendment One (Diverging)");
+$("#rightMapControl").val("Swing Direction on Amendment One");
 
+// function calls to set maps initially
+    // (these will be used in the dropdown)
+forAgainstPercentageMap(d3.select('#topMap'));
+forAgainstFillMap(d3.select('#bottomMap'));
 
-    //function to update scale
-    function updateScale(scale, map){
-        var maptype = "";
-        if(map.attr('id') === 'topMap'){
-            maptype = leftSelection();
-        } else {
-            maptype = rightSelection();
-        }
-
-        // get stops
-        var stops;
-        var svg; // for labels, later
-        if(map.attr('id') === 'topMap'){
-            // for some reason, i have to remove all stops beforehand
-            // TODO fix this
-            d3.select("#leftScale")
-                    .select("#leftGrad")
-                    .selectAll('stop')
-                    .remove('stop');
+updateMapDescription(d3.select('#topMap'));
+updateMapDescription(d3.select('#bottomMap'));
 
 
-                stops = d3.select("#leftScale")
-                    .select("#leftGrad")
-                    .selectAll('stop')
-                    .data(scale.range());
-
-            svg = d3.select('#leftScale');
-        } else {
-            // for some reason, i have to remove all stops beforehand
-            // TODO fix this
-            d3.select("#rightGrad")
-                    .selectAll('stop')
-                    .remove('stop');
-
-
-                stops = d3.select("#rightScale")
-                    .select("#rightGrad")
-                    .selectAll('stop')
-                    .data(scale.range());
-
-            svg = d3.select('#rightScale');
-        }
-
-        // set stops for scale gradient
-        stops.enter().append('stop')
-            .attr('offset', function(d, i){ 
-                    if(maptype.indexOf('Universities') != -1){
-                        if(i == 0)
-                            return .33;
-                        else if(i == 1)
-                            return .66;
-                        else if(i == 2)
-                            return 1.0;
-                    }if(maptype.indexOf('Swing') != -1){
-                        return .5;
-                    }else{
-                        return i/(scale.range().length - 1);
-                    }
-            })
-            .style('stop-opacity', 1 )
-            .style('stop-color', function(d, i){ return d; });
-        stops.exit().remove();
-
-        // formatting numbers for labels
-        // TODO these are horrendous hacks, fix them sometime by adding map type
-        // TODO on median income, add $
-        var format = d3.format("%");
-        var determineLabel = function(d){
-            if(d == 1.0 && maptype.indexOf('Swing') != -1)
-                return 'for';
-            else if(d == -1.0 && maptype.indexOf('Swing') != -1)
-                return 'against';
-            else if(d < -0.10 && d > -0.12)
-                return '11%f';
-            else if(d > 0.10 && d < 0.12)
-                return '11%m';
-            else if(maptype.indexOf('Median') != -1)
-                return '$'+d;
-            else if(d > 100)
-                return d;
-            else if(d == 9.5)
-                return d;
-            else if(maptype.indexOf('Universities') != -1)
-                return d;
-
-            return format(d);
-        }
-
-        // labels based on scale.domain()
-        if(map.attr('id') === 'topMap'){
-            svg.selectAll('text').remove();
-            svg.selectAll('text').data(scale.domain())
-                .enter().append('text')
-                .text(function(d){ return determineLabel(d);})
-                .attr('x', function(d, i){return 250 + 100*(i/(scale.domain().length - 1));})
-                .attr('y', 230 + 34);
-        } else {
-            svg.selectAll('text').remove();
-            svg.selectAll('text').data(scale.domain())
-                .enter().append('text')
-                .text(function(d){ return determineLabel(d);})
-                .attr('x', function(d, i){return 250 + 100*(i/(scale.domain().length - 1));})
-                .attr('y', 230 + 34);
-        }
-
-        // TODO add hover rect for county data, to be manipulated by hover mouseover on county
-
+//function to update scale
+function updateScale(scale, map){
+    var maptype = "";
+    if(map.attr('id') === 'topMap'){
+        maptype = leftSelection();
+    } else {
+        maptype = rightSelection();
     }
 
-    function forAgainstPercentageMap(map){
-        var paths = map.selectAll('path');
+    // get stops
+    var stops;
+    var svg; // for labels, later
+    if(map.attr('id') === 'topMap'){
+        // for some reason, i have to remove all stops beforehand
+        // TODO fix this
+        d3.select("#leftScale")
+                .select("#leftGrad")
+                .selectAll('stop')
+                .remove('stop');
 
-        var min = d3.min(amendmentOne, function(d){return d.forChoiceTotal / d.total  });
-        var max = d3.max(amendmentOne, function(d){return d.forChoiceTotal / d.total });
 
-        var color = d3.scale.linear()
-            .domain([0, .5, 1.0])
-            .range(["#0051A6", "white", "#EFC331"]);
+            stops = d3.select("#leftScale")
+                .select("#leftGrad")
+                .selectAll('stop')
+                .data(scale.range());
 
-        updateScale(color, map);
+        svg = d3.select('#leftScale');
+    } else {
+        // for some reason, i have to remove all stops beforehand
+        // TODO fix this
+        d3.select("#rightGrad")
+                .selectAll('stop')
+                .remove('stop');
 
-        // map color
-        paths.attr('fill', function(d, i){
-                var county = this.id;
 
-                // color will default to green (for errors)
-                var col = "none";
-                $.each(amendmentOne, function(key, data){
-                    if(county.indexOf('fill') != -1 && county.indexOf(data.county) != -1){ // get our match
-                        col = color(data.forChoiceTotal / data.total );
-                    } 
-                });
-                return col;
-        });
+            stops = d3.select("#rightScale")
+                .select("#rightGrad")
+                .selectAll('stop')
+                .data(scale.range());
+
+        svg = d3.select('#rightScale');
     }
 
-function forAgainstPercentageMapLinear(map){
+    // set stops for scale gradient
+    stops.enter().append('stop')
+        .attr('offset', function(d, i){ 
+                if(maptype.indexOf('Universities') != -1){
+                    if(i == 0)
+                        return .33;
+                    else if(i == 1)
+                        return .66;
+                    else if(i == 2)
+                        return 1.0;
+                }if(maptype.indexOf('Swing') != -1){
+                    return .5;
+                }else{
+                    return i/(scale.range().length - 1);
+                }
+        })
+        .style('stop-opacity', 1 )
+        .style('stop-color', function(d, i){ return d; });
+    stops.exit().remove();
+
+    // formatting numbers for labels
+    // TODO these are horrendous hacks, fix them sometime by adding map type
+    // TODO on median income, add $
+    var format = d3.format("%");
+    var determineLabel = function(d){
+        if(d == 1.0 && maptype.indexOf('Swing') != -1)
+            return 'for';
+        else if(d == -1.0 && maptype.indexOf('Swing') != -1)
+            return 'against';
+        else if(d < -0.10 && d > -0.12)
+            return '11%f';
+        else if(d > 0.10 && d < 0.12)
+            return '11%m';
+        else if(maptype.indexOf('Median') != -1)
+            return '$'+d;
+        else if(d > 100)
+            return d;
+        else if(d == 9.5)
+            return d;
+        else if(maptype.indexOf('Universities') != -1)
+            return d;
+
+        return format(d);
+    }
+
+    // labels based on scale.domain()
+    if(map.attr('id') === 'topMap'){
+        svg.selectAll('text').remove();
+        svg.selectAll('text').data(scale.domain())
+            .enter().append('text')
+            .text(function(d){ return determineLabel(d);})
+            .attr('x', function(d, i){return 250 + 100*(i/(scale.domain().length - 1));})
+            .attr('y', 230 + 34);
+    } else {
+        svg.selectAll('text').remove();
+        svg.selectAll('text').data(scale.domain())
+            .enter().append('text')
+            .text(function(d){ return determineLabel(d);})
+            .attr('x', function(d, i){return 250 + 100*(i/(scale.domain().length - 1));})
+            .attr('y', 230 + 34);
+    }
+
+    // TODO add hover rect for county data, to be manipulated by hover mouseover on county
+
+}
+
+function forAgainstPercentageMap(map){
     var paths = map.selectAll('path');
 
     var min = d3.min(amendmentOne, function(d){return d.forChoiceTotal / d.total  });
     var max = d3.max(amendmentOne, function(d){return d.forChoiceTotal / d.total });
 
     var color = d3.scale.linear()
-        .domain([min, max])
-        .range(["white", "#EFC331"]);
+        .domain([0, .5, 1.0])
+        .range(["#0051A6", "white", "#EFC331"]);
 
     updateScale(color, map);
 
@@ -11448,409 +11379,419 @@ function forAgainstPercentageMapLinear(map){
             var col = "none";
             $.each(amendmentOne, function(key, data){
                 if(county.indexOf('fill') != -1 && county.indexOf(data.county) != -1){ // get our match
-                col = color(data.forChoiceTotal / data.total );
+                    col = color(data.forChoiceTotal / data.total );
                 } 
-                });
-            return col;
             });
+            return col;
+    });
+}
+
+function forAgainstPercentageMapLinear(map){
+var paths = map.selectAll('path');
+
+var min = d3.min(amendmentOne, function(d){return d.forChoiceTotal / d.total  });
+var max = d3.max(amendmentOne, function(d){return d.forChoiceTotal / d.total });
+
+var color = d3.scale.linear()
+    .domain([min, max])
+    .range(["white", "#EFC331"]);
+
+updateScale(color, map);
+
+// map color
+paths.attr('fill', function(d, i){
+        var county = this.id;
+
+        // color will default to green (for errors)
+        var col = "none";
+        $.each(amendmentOne, function(key, data){
+            if(county.indexOf('fill') != -1 && county.indexOf(data.county) != -1){ // get our match
+            col = color(data.forChoiceTotal / data.total );
+            } 
+            });
+        return col;
+        });
 }
 
 
-    function forAgainstFillMap(map){
-        var paths = map.selectAll('path');
+function forAgainstFillMap(map){
+    var paths = map.selectAll('path');
 
-        var color = d3.scale.ordinal()
-            .domain([-1, 1])
-            .range(["0051A6", "#EFC331"]);
+    var color = d3.scale.ordinal()
+        .domain([-1, 1])
+        .range(["0051A6", "#EFC331"]);
 
-        updateScale(color, map);
+    updateScale(color, map);
 
-        // map color
-        paths.attr('fill', function(d, i){
-                var county = this.id;
+    // map color
+    paths.attr('fill', function(d, i){
+            var county = this.id;
 
-                // col will default to green (for errors)
-                var col = "none";
-                $.each(amendmentOne, function(key, data){
-                   if(county.indexOf('fill') != -1 && county.indexOf(data.county) != -1){ // get our match
-                        if(data.forChoiceTotal > data.againstChoiceTotal)
-                            col = "#EFC331";
-                            else {
-                            col = "#0051A6";
-                            }
-                    } 
+            // col will default to green (for errors)
+            var col = "none";
+            $.each(amendmentOne, function(key, data){
+               if(county.indexOf('fill') != -1 && county.indexOf(data.county) != -1){ // get our match
+                    if(data.forChoiceTotal > data.againstChoiceTotal)
+                        col = "#EFC331";
+                        else {
+                        col = "#0051A6";
+                        }
+                } 
+            });
+            return col;
+    });
+}
+
+function hasUniversityMap(map){
+    var paths = map.selectAll('path');
+
+    var color = d3.scale.ordinal()
+        .domain([0, 1, 2])
+        .range(["fff", "#b2bcd8", "#003D98"]);
+
+    //#fff for 0
+    //#b2bcd8 for 1
+    //#003D98 for 2
+
+    updateScale(color, map);
+
+    // map color
+    paths.attr('fill', function(d, i){
+            var county = this.id;
+
+            // col will default to green (for errors)
+            var col = "none";
+            $.each(universities, function(key, data){
+               if(county.indexOf('fill') != -1 && county.indexOf(data.county) != -1){ // get our match
+                    if(data.count == 0)
+                        col = "#fff";
+                    else if(data.count == 1)
+                        col = "#b2bcd8";
+                    else if(data.count == 2)
+                        col = "#003D98";
+                } 
+            });
+            return col;
+    });
+}
+
+
+function femaleMaleMap(map){
+    var paths = map.selectAll('path');
+
+    var min = d3.min(census2010, function(d){return d.malePopulation / d.residentPopulation - d.femalePopulation / d.residentPopulation });
+    var max = d3.max(census2010, function(d){return d.malePopulation / d.residentPopulation - d.femalePopulation / d.residentPopulation });
+
+
+    var color = d3.scale.linear()
+        .domain([-max, 0, max]) // hack to make scale even
+        .range(["#5E3C99", "white", "#E66101"]);
+    
+    updateScale(color, map);
+
+
+    // map color
+    paths.attr('fill', function(d, i){
+            var county = this.id;
+
+            // color will default to green (for errors)
+            var col = "none";
+            $.each(census2010, function(key, data){
+                if(county.indexOf('fill') != -1 && county.indexOf(data.areaname) != -1){ // get our match
+                col = color(data.malePopulation / data.residentPopulation - data.femalePopulation / data.residentPopulation);
+                } 
                 });
-                return col;
-        });
-    }
-
-    function hasUniversityMap(map){
-        var paths = map.selectAll('path');
-
-        var color = d3.scale.ordinal()
-            .domain([0, 1, 2])
-            .range(["fff", "#b2bcd8", "#003D98"]);
-
-        //#fff for 0
-        //#b2bcd8 for 1
-        //#003D98 for 2
-
-        updateScale(color, map);
-
-        // map color
-        paths.attr('fill', function(d, i){
-                var county = this.id;
-
-                // col will default to green (for errors)
-                var col = "none";
-                $.each(universities, function(key, data){
-                   if(county.indexOf('fill') != -1 && county.indexOf(data.county) != -1){ // get our match
-                        if(data.count == 0)
-                            col = "#fff";
-                        else if(data.count == 1)
-                            col = "#b2bcd8";
-                        else if(data.count == 2)
-                            col = "#003D98";
-                    } 
-                });
-                return col;
-        });
-    }
-
-
-    function femaleMaleMap(map){
-        var paths = map.selectAll('path');
-
-        var min = d3.min(census2010, function(d){return d.malePopulation / d.residentPopulation - d.femalePopulation / d.residentPopulation });
-        var max = d3.max(census2010, function(d){return d.malePopulation / d.residentPopulation - d.femalePopulation / d.residentPopulation });
-
-
-        var color = d3.scale.linear()
-            .domain([-max, 0, max]) // hack to make scale even
-            .range(["#5E3C99", "white", "#E66101"]);
-        
-        updateScale(color, map);
-
-
-        // map color
-        paths.attr('fill', function(d, i){
-                var county = this.id;
-
-                // color will default to green (for errors)
-                var col = "none";
-                $.each(census2010, function(key, data){
-                    if(county.indexOf('fill') != -1 && county.indexOf(data.areaname) != -1){ // get our match
-                    col = color(data.malePopulation / data.residentPopulation - data.femalePopulation / data.residentPopulation);
-                    } 
-                    });
-                return col;
-        });
-    }
+            return col;
+    });
+}
 
 
 function populationDensityMap(map){
-        var paths = map.selectAll('path');
+    var paths = map.selectAll('path');
 
-        var min = d3.min(census2010, function(d){return d.populationPerSquareMile });
-        var max = d3.max(census2010, function(d){return d.populationPerSquareMile});
-
-
-        var color = d3.scale.linear()
-            .domain([min, max])
-            .range(["#7FBF7B", "white"]);
-        
-        updateScale(color, map);
+    var min = d3.min(census2010, function(d){return d.populationPerSquareMile });
+    var max = d3.max(census2010, function(d){return d.populationPerSquareMile});
 
 
-        // map color
-        paths.attr('fill', function(d, i){
-                var county = this.id;
+    var color = d3.scale.linear()
+        .domain([min, max])
+        .range(["#7FBF7B", "white"]);
+    
+    updateScale(color, map);
 
-                // color will default to green (for errors)
-                var col = "none";
-                $.each(census2010, function(key, data){
-                    if(county.indexOf('fill') != -1 && county.indexOf(data.areaname) != -1){ // get our match
-                    col = color(data.populationPerSquareMile);
-                    } 
-                    });
-                return col;
-        });
-    }
+
+    // map color
+    paths.attr('fill', function(d, i){
+            var county = this.id;
+
+            // color will default to green (for errors)
+            var col = "none";
+            $.each(census2010, function(key, data){
+                if(county.indexOf('fill') != -1 && county.indexOf(data.areaname) != -1){ // get our match
+                col = color(data.populationPerSquareMile);
+                } 
+                });
+            return col;
+    });
+}
 
 
 function bachelorsDegreeMap(map){
-        var paths = map.selectAll('path');
+    var paths = map.selectAll('path');
 
-        var total = function(d){ return d.males + d.females;};
-        
-        var min = d3.min(communitySurvey, function(d){return (d.over25Bachelors + d.over25GraduateProfessional)/total(d) });
-        var max = d3.max(communitySurvey, function(d){return (d.over25Bachelors + d.over25GraduateProfessional)/total(d)});
-
-
-        var color = d3.scale.linear()
-            .domain([min, max])
-            .range(["white", "#0C2C84"]);
-        
-        updateScale(color, map);
+    var total = function(d){ return d.males + d.females;};
+    
+    var min = d3.min(communitySurvey, function(d){return (d.over25Bachelors + d.over25GraduateProfessional)/total(d) });
+    var max = d3.max(communitySurvey, function(d){return (d.over25Bachelors + d.over25GraduateProfessional)/total(d)});
 
 
-        // map color
-        paths.attr('fill', function(d, i){
-                var county = this.id;
+    var color = d3.scale.linear()
+        .domain([min, max])
+        .range(["white", "#0C2C84"]);
+    
+    updateScale(color, map);
 
-                // color will default to green (for errors)
-                var col = "none";
-                $.each(communitySurvey, function(key, data){
-                    if(county.indexOf('fill') != -1 && county.indexOf(data.areaName) != -1){ // get our match
-                    col = color((data.over25Bachelors + data.over25GraduateProfessional)/total(data));
-                    } 
-                    });
-                return col;
-        });
+
+    // map color
+    paths.attr('fill', function(d, i){
+            var county = this.id;
+
+            // color will default to green (for errors)
+            var col = "none";
+            $.each(communitySurvey, function(key, data){
+                if(county.indexOf('fill') != -1 && county.indexOf(data.areaName) != -1){ // get our match
+                col = color((data.over25Bachelors + data.over25GraduateProfessional)/total(data));
+                } 
+                });
+            return col;
+    });
+}
+
+
+function discordMap(map){
+    var paths = map.selectAll('path');
+
+    var total = function(d){ return d.males + d.females;};
+    var highDiscord = function(d){
+        return d.malesSeparated + d.femalesSeparated + d.malesDivorced + d.femalesDivorced;
     }
 
-
-    function discordMap(map){
-        var paths = map.selectAll('path');
-
-        var total = function(d){ return d.males + d.females;};
-        var highDiscord = function(d){
-            return d.malesSeparated + d.femalesSeparated + d.malesDivorced + d.femalesDivorced;
-        }
-
-        var min = d3.min(communitySurvey, function(d){return (highDiscord(d))/total(d) });
-        var max = d3.max(communitySurvey, function(d){return (highDiscord(d))/total(d) });
+    var min = d3.min(communitySurvey, function(d){return (highDiscord(d))/total(d) });
+    var max = d3.max(communitySurvey, function(d){return (highDiscord(d))/total(d) });
 
 
-        var color = d3.scale.linear()
-            .domain([min, max])
-            .range(["white", "#E66101"]);
-        
-        updateScale(color, map);
+    var color = d3.scale.linear()
+        .domain([min, max])
+        .range(["white", "#E66101"]);
+    
+    updateScale(color, map);
 
 
-        // map color
-        paths.attr('fill', function(d, i){
-                var county = this.id;
+    // map color
+    paths.attr('fill', function(d, i){
+            var county = this.id;
 
-                // color will default to green (for errors)
-                var col = "none";
-                $.each(communitySurvey, function(key, data){
-                    if(county.indexOf('fill') != -1 && county.indexOf(data.areaName) != -1){ // get our match
-                    col = color(highDiscord(data)/total(data));
-                    } 
-                    });
-                return col;
-        });
-    }
+            // color will default to green (for errors)
+            var col = "none";
+            $.each(communitySurvey, function(key, data){
+                if(county.indexOf('fill') != -1 && county.indexOf(data.areaName) != -1){ // get our match
+                col = color(highDiscord(data)/total(data));
+                } 
+                });
+            return col;
+    });
+}
 
 function marriageMap(map){
-        var paths = map.selectAll('path');
+    var paths = map.selectAll('path');
 
-        var total = function(d){ return d.males + d.females;};
-        var metric = function(d){
-            return d.malesMarried + d.femalesMarried;
-        }
-
-        var min = d3.min(communitySurvey, function(d){return (metric(d))/total(d) });
-        var max = d3.max(communitySurvey, function(d){return (metric(d))/total(d) });
-
-
-        var color = d3.scale.linear()
-            .domain([min, max])
-            .range(["white", "#7FBF7B"]);
-        
-        updateScale(color, map);
-
-
-        // map color
-        paths.attr('fill', function(d, i){
-                var county = this.id;
-
-                // color will default to green (for errors)
-                var col = "none";
-                $.each(communitySurvey, function(key, data){
-                    if(county.indexOf('fill') != -1 && county.indexOf(data.areaName) != -1){ // get our match
-                    col = color(metric(data)/total(data));
-                    } 
-                    });
-                return col;
-        });
+    var total = function(d){ return d.males + d.females;};
+    var metric = function(d){
+        return d.malesMarried + d.femalesMarried;
     }
 
-    function veteranMap(map){
-        var paths = map.selectAll('path');
-
-        var total = function(d){ return d.males + d.females;};
-        
-        var min = d3.min(communitySurvey, function(d){return d.veterans/total(d) });
-        var max = d3.max(communitySurvey, function(d){return d.veterans/total(d) });
-
-        var color = d3.scale.linear()
-            .domain([min, max])
-            .range(["white", "#FC8D59"]); // TODO change to a red
-        
-        updateScale(color, map);
+    var min = d3.min(communitySurvey, function(d){return (metric(d))/total(d) });
+    var max = d3.max(communitySurvey, function(d){return (metric(d))/total(d) });
 
 
-        // map color
-        paths.attr('fill', function(d, i){
-                var county = this.id;
-
-                // color will default to green (for errors)
-                var col = "none";
-                $.each(communitySurvey, function(key, data){
-                    if(county.indexOf('fill') != -1 && county.indexOf(data.areaName) != -1){ // get our match
-                    col = color(data.veterans/total(data));
-                    } 
-                    });
-                return col;
-        });
-    }
-
-
-    function medianIncomeMap(map){
-        var paths = map.selectAll('path');
- 
-        var min = d3.min(communitySurvey, function(d){return d.medianHouseholdIncome });
-        var max = d3.max(communitySurvey, function(d){return d.medianHouseholdIncome });
-
-        var color = d3.scale.linear()
-            .domain([min, max])
-            .range(["white", "#7FBF7B"]); // TODO change to a red
-        
-        updateScale(color, map);
-
-
-        // map color
-        paths.attr('fill', function(d, i){
-                var county = this.id;
-
-                // color will default to green (for errors)
-                var col = "none";
-                $.each(communitySurvey, function(key, data){
-                    if(county.indexOf('fill') != -1 && county.indexOf(data.areaName) != -1){ // get our match
-                    col = color(data.medianHouseholdIncome);
-                    } 
-                    });
-                return col;
-        });
-    }
-
-
-
-    // hover interactions
-    d3.selectAll('path').on("mouseover", function(){
-
-            // extract county from selection
-            var id = this.id;
-            // make county + _stroke string
-            if(id.indexOf('fill') != -1)
-                id = id.replace('fill', 'stroke');
+    var color = d3.scale.linear()
+        .domain([min, max])
+        .range(["white", "#7FBF7B"]);
     
-            // select id in BOTH maps
-            d3.selectAll('#'+id)
-                .style("stroke-width", "1px")
-                .style("stroke", "#252525");
-    
+    updateScale(color, map);
+
+
+    // map color
+    paths.attr('fill', function(d, i){
             var county = this.id;
-    
+
             // color will default to green (for errors)
-            $.each(amendmentOne, function(key, data){
-                if(county.indexOf(data.county) != -1){ // get our match
-                // county
-                // for
-                // against
-                // malePop
-                // femalePop
-                // popPerSqMile
-                // degrees
-                // discord
-                // Veteran Population Percentage
-                // Median Income
-
-                d3.select("#county")
-                    .text(data.county);
-
-                d3.select("#for")
-                    .text(data.forChoiceTotal);
-
-                d3.select("#against")
-                    .text(data.againstChoiceTotal);
-
-                //second dataset
-                $.each(census2010, function(key, data){
-                    if(county.indexOf(data.areaname) != -1){
-                        d3.select("#malePop")
-                            .text(data.malePopulation);
-                        d3.select("#femalePop")
-                            .text(data.femalePopulation);
-                        d3.select("#popPerSqMile")
-                            .text(data.populationPerSquareMile);
-                    }
-                });
-
-                // third dataset
-                $.each(communitySurvey, function(key, data){
-                    if(county.indexOf(data.areaName) != -1){
-                        d3.select("#degrees")
-                            .text((data.over25Bachelors + data.over25GraduateProfessional));
-                        d3.select("#discord")
-                            .text((data.malesSeparated + data.femalesSeparated + data.malesDivorced + data.femalesDivorced));
-                        d3.select("#veterans")
-                            .text(data.veterans);
-                        d3.select("#median-income")
-                            .text(data.medianHouseholdIncome);
-                        d3.select("#married")
-                            .text((data.malesMarried + data.femalesMarried));
-                    }
-                });
-
-                //fourth dataset
-                $.each(universities, function(key, data){
-                    if(county.indexOf(data.county) != -1){
-                        d3.select("#num_universities")
-                            .text(data.count);
-                    }
-                });
-
-                
-                //d3.select("#focusData").text(str);
+            var col = "none";
+            $.each(communitySurvey, function(key, data){
+                if(county.indexOf('fill') != -1 && county.indexOf(data.areaName) != -1){ // get our match
+                col = color(metric(data)/total(data));
                 } 
-            });
+                });
+            return col;
     });
-    d3.selectAll('path').on("mouseout", function(){
-            // extract county from selection
-            var id = this.id;
-            // make county + _stroke string
-            if(id.indexOf('fill') != -1)
-                id = id.replace('fill', 'stroke');
+}
+
+function veteranMap(map){
+    var paths = map.selectAll('path');
+
+    var total = function(d){ return d.males + d.females;};
     
-            // select id in BOTH maps
-            d3.selectAll('#'+id)
-                .style("stroke-width", "1px")
-                .style("stroke", "none");
+    var min = d3.min(communitySurvey, function(d){return d.veterans/total(d) });
+    var max = d3.max(communitySurvey, function(d){return d.veterans/total(d) });
+
+    var color = d3.scale.linear()
+        .domain([min, max])
+        .range(["white", "#FC8D59"]); // TODO change to a red
+    
+    updateScale(color, map);
+
+
+    // map color
+    paths.attr('fill', function(d, i){
+            var county = this.id;
+
+            // color will default to green (for errors)
+            var col = "none";
+            $.each(communitySurvey, function(key, data){
+                if(county.indexOf('fill') != -1 && county.indexOf(data.areaName) != -1){ // get our match
+                col = color(data.veterans/total(data));
+                } 
+                });
+            return col;
     });
+}
 
-    </script>
+
+function medianIncomeMap(map){
+    var paths = map.selectAll('path');
+
+    var min = d3.min(communitySurvey, function(d){return d.medianHouseholdIncome });
+    var max = d3.max(communitySurvey, function(d){return d.medianHouseholdIncome });
+
+    var color = d3.scale.linear()
+        .domain([min, max])
+        .range(["white", "#7FBF7B"]); // TODO change to a red
+    
+    updateScale(color, map);
 
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="lib/bootstrap/js/jquery.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-transition.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-alert.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-modal.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-dropdown.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-scrollspy.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-tab.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-tooltip.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-popover.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-button.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-collapse.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-carousel.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-typeahead.js"></script>
+    // map color
+    paths.attr('fill', function(d, i){
+            var county = this.id;
 
-  </body>
-</html>
+            // color will default to green (for errors)
+            var col = "none";
+            $.each(communitySurvey, function(key, data){
+                if(county.indexOf('fill') != -1 && county.indexOf(data.areaName) != -1){ // get our match
+                col = color(data.medianHouseholdIncome);
+                } 
+                });
+            return col;
+    });
+}
+
+
+
+// hover interactions
+d3.selectAll('path').on("mouseover", function(){
+
+        // extract county from selection
+        var id = this.id;
+        // make county + _stroke string
+        if(id.indexOf('fill') != -1)
+            id = id.replace('fill', 'stroke');
+
+        // select id in BOTH maps
+        d3.selectAll('#'+id)
+            .style("stroke-width", "1px")
+            .style("stroke", "#252525");
+
+        var county = this.id;
+
+        // color will default to green (for errors)
+        $.each(amendmentOne, function(key, data){
+            if(county.indexOf(data.county) != -1){ // get our match
+            // county
+            // for
+            // against
+            // malePop
+            // femalePop
+            // popPerSqMile
+            // degrees
+            // discord
+            // Veteran Population Percentage
+            // Median Income
+
+            d3.select("#county")
+                .text(data.county);
+
+            d3.select("#for")
+                .text(data.forChoiceTotal);
+
+            d3.select("#against")
+                .text(data.againstChoiceTotal);
+
+            //second dataset
+            $.each(census2010, function(key, data){
+                if(county.indexOf(data.areaname) != -1){
+                    d3.select("#malePop")
+                        .text(data.malePopulation);
+                    d3.select("#femalePop")
+                        .text(data.femalePopulation);
+                    d3.select("#popPerSqMile")
+                        .text(data.populationPerSquareMile);
+                }
+            });
+
+            // third dataset
+            $.each(communitySurvey, function(key, data){
+                if(county.indexOf(data.areaName) != -1){
+                    d3.select("#degrees")
+                        .text((data.over25Bachelors + data.over25GraduateProfessional));
+                    d3.select("#discord")
+                        .text((data.malesSeparated + data.femalesSeparated + data.malesDivorced + data.femalesDivorced));
+                    d3.select("#veterans")
+                        .text(data.veterans);
+                    d3.select("#median-income")
+                        .text(data.medianHouseholdIncome);
+                    d3.select("#married")
+                        .text((data.malesMarried + data.femalesMarried));
+                }
+            });
+
+            //fourth dataset
+            $.each(universities, function(key, data){
+                if(county.indexOf(data.county) != -1){
+                    d3.select("#num_universities")
+                        .text(data.count);
+                }
+            });
+
+            
+            //d3.select("#focusData").text(str);
+            } 
+        });
+});
+d3.selectAll('path').on("mouseout", function(){
+        // extract county from selection
+        var id = this.id;
+        // make county + _stroke string
+        if(id.indexOf('fill') != -1)
+            id = id.replace('fill', 'stroke');
+
+        // select id in BOTH maps
+        d3.selectAll('#'+id)
+            .style("stroke-width", "1px")
+            .style("stroke", "none");
+});
+
+</script>
+
+<footer>
+  <a href="../" rel="author">Lane Harrison</a>
+</footer>
