@@ -19,10 +19,6 @@
     font-size: 13px;
   }
 
-  #focusData {
-    font-size: 14px;
-  }
-
   body {
     color: #333;
     margin: 1em auto 4em auto;
@@ -34,6 +30,27 @@
 
   body > p, h1 {
     width: 720px;
+  }
+
+  #leftDescription, #rightDescription {
+    display: inline-block;
+    width: 380px;
+  }
+
+  #leftSide, #rightSide {
+    display: inline;
+    float: left;
+  }
+
+  #nav {
+    margin: 0 auto; 
+    width: 1100px;
+  }
+
+  #focusData {
+    font-size: 14px;
+    padding-top: 20px;
+    padding-bottom: 40px;
   }
 </style>
 
@@ -73,6 +90,8 @@ _gaq.push(['_trackPageview']);
 
 <p>You can find the code on <a href="http://github.com/codementum/admendmentone">GitHub</a> and follow Lane (<a href="http://twitter.com/laneharrison">@laneharrison</a>) and Drew Skau (<a href="http://twitter.com/SeeingStructure">@SeeingStructure</a>) on Twitter.</p>
 
+<div id="nav">
+<span id="leftSide">
 
   <select id="leftMapControl" style="width:320px">
     <option>Swing Direction on Amendment One</option>
@@ -87,6 +106,8 @@ _gaq.push(['_trackPageview']);
     <option>Veteran Population Percentage</option>
     <option>Median Income</option>
   </select>
+
+  <br />
 
 <svg version="1.1" id="topMap" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="500px" height="189.541px" viewBox="230 87.188 500 189.541" enable-background="new 230 87.188 500 189.541"
@@ -5557,20 +5578,25 @@ _gaq.push(['_trackPageview']);
         </span>
 
 </svg>
+</span>
 
-        <select id="rightMapControl" style="width:320px">
-            <option>Swing Direction on Amendment One</option>
-            <option>Percentage For Amendment One (Diverging)</option>
-            <option>Percentage For Amendment One</option>
-            <option>Female-Male Skew</option>
-            <option>Percentage Married</option>
-            <option>Percentage Separated or Divorced</option>
-            <option>Percentage with Bachelor or Graduate Degrees</option>
-            <option>Total Universities</option>
-            <option>Population per square mile</option>
-            <option>Veteran Population Percentage</option>
-            <option>Median Income</option>
-        </select>
+<span id="rightSide">
+
+<select id="rightMapControl" style="width:320px">
+  <option>Swing Direction on Amendment One</option>
+  <option>Percentage For Amendment One (Diverging)</option>
+  <option>Percentage For Amendment One</option>
+  <option>Female-Male Skew</option>
+  <option>Percentage Married</option>
+  <option>Percentage Separated or Divorced</option>
+  <option>Percentage with Bachelor or Graduate Degrees</option>
+  <option>Total Universities</option>
+  <option>Population per square mile</option>
+  <option>Veteran Population Percentage</option>
+  <option>Median Income</option>
+</select>
+
+<br />
 
 <svg version="1.1" id="bottomMap" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="500px" height="189.541px" viewBox="230 87.188 500 189.541" enable-background="new 230 87.188 500 189.541"
@@ -11035,47 +11061,52 @@ _gaq.push(['_trackPageview']);
 </g>
 
 </svg>
-        <br /> 
 
-        <span id="rightDescription" class="span5" style="margin-left:-.05px">                
-            This map shows the percentage of people that voted for Amendment One. Counties with a blue hue are counties where less than 50% of the voting population voted for Amendment One. The data is from the <a href='http://results.enr.clarityelections.com/NC/36596/81350/en/reports.html' target='_blank'>state board of elections</a>.
-        </span>
+<br /> 
+
+<span id="rightDescription" class="span5" style="margin-left:-.05px">                
+    This map shows the percentage of people that voted for Amendment One. Counties with a blue hue are counties where less than 50% of the voting population voted for Amendment One. The data is from the <a href='http://results.enr.clarityelections.com/NC/36596/81350/en/reports.html' target='_blank'>state board of elections</a>.
+</span>
+
+</span>
+
+</div>
 
 
-    <!-- Data Table -->
-            <table id="focusData" class="table table-condensed">
-                <thead>
-                <tr>
-                    <th>County&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                    <th>For&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                    <th>Against&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                    <th>Male Population</th>
-                    <th>Female Population</th>
-                    <th>Separated and&nbsp;Divorced</th>
-                    <th>Married</th>
-                    <th>Bachelor&nbsp;and Graduate&nbsp;Degrees</th>
-                    <th>Total Universities</th>
-                    <th>Population&nbsp;per square&nbsp;mile</th>
-                    <th>Veteran Population</th>
-                    <th>Median Income</th>
-                </tr>
-                </thead>
-                <tr>
-                    <td id="county"> </td>
-                    <td id="for"> </td>
-                    <td id="against"> </td>
-                    <td id="malePop"> </td>
-                    <td id="femalePop"> </td>
-                    <td id="discord"> </td>
-                    <td id="married"> </td>
-                    <td id="degrees"> </td>
-                    <td id="num_universities"> </td>
-                    <td id="popPerSqMile"> </td>
-                    <td id="veterans"> </td>
-                    <td id="median-income"> </td>
+<!-- Data Table -->
+<table id="focusData" class="table table-condensed">
+    <thead>
+    <tr>
+        <th>County&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+        <th>For&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+        <th>Against&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+        <th>Male Population</th>
+        <th>Female Population</th>
+        <th>Separated and&nbsp;Divorced</th>
+        <th>Married</th>
+        <th>Bachelor&nbsp;and Graduate&nbsp;Degrees</th>
+        <th>Total Universities</th>
+        <th>Population&nbsp;per square&nbsp;mile</th>
+        <th>Veteran Population</th>
+        <th>Median Income</th>
+    </tr>
+    </thead>
+    <tr>
+        <td id="county"> </td>
+        <td id="for"> </td>
+        <td id="against"> </td>
+        <td id="malePop"> </td>
+        <td id="femalePop"> </td>
+        <td id="discord"> </td>
+        <td id="married"> </td>
+        <td id="degrees"> </td>
+        <td id="num_universities"> </td>
+        <td id="popPerSqMile"> </td>
+        <td id="veterans"> </td>
+        <td id="median-income"> </td>
 
-                </tr>
-            </table>
+    </tr>
+</table>
 
 
 
